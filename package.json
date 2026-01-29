@@ -1,5 +1,5 @@
 {
-  "name": "lenny-sha256-demo-plugin",
+  "name": "lenny-sha256-plugin",
   "version": "1.0.0",
   "description": "A lightweight, dependency-free SHA-256 implementation.",
   "type": "module",
