@@ -1,0 +1,19 @@
+{
+  "name": "lenny-sha256-demo-plugin",
+  "version": "1.0.0",
+  "description": "A lightweight, dependency-free SHA-256 implementation.",
+  "type": "module",
+  "main": "sha256.js",
+  "exports": {
+    ".": "./sha256.js"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "sha256.js",
+    "README.md"
+  ],
+  "author": "Lenny",
+  "license": "MIT"
+}

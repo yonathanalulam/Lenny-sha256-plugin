@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHA-256 Algorithm Demo</title>
+    <style>
+        body { font-family: 'Courier New', monospace; background: #0d1117; color: #00ff41; margin: 0; padding: 2rem; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { border-bottom: 2px solid #30363d; padding-bottom: 10px; }
+        .input-group { margin-bottom: 2rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        textarea { width: 100%; height: 100px; background: #161b22; border: 1px solid #30363d; color: #fff; padding: 10px; font-family: inherit; font-size: 1.2rem; }
+        .output-group { background: #161b22; border: 1px solid #30363d; padding: 1.5rem; border-radius: 6px; }
+        .hash-display { font-size: 1.5rem; word-break: break-all; color: #fff; margin-bottom: 1rem; }
+        .binary-matrix { display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; font-size: 0.8rem; color: #79c0ff; opacity: 0.8; }
+        .bit { text-align: center; padding: 5px; background: #21262d; }
+        .bit.active { background: #238636; color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SECURE HASH ALGORITHM 256</h1>
+        
+        <div class="input-group">
+            <label>INPUT DATA STREAM</label>
+            <textarea id="input" placeholder="Enter text to encrypt..."></textarea>
+        </div>
+
+        <div class="output-group">
+            <label>COMPUTED HASH (HEX)</label>
+            <div id="hash" class="hash-display"></div>
+            
+            <label>INTERNAL STATE (BLOCK VISUALIZATION)</label>
+            <div id="matrix" class="binary-matrix"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { SHA256 } from './sha256.js';
+
+        const input = document.getElementById('input');
+        const hashDisplay = document.getElementById('hash');
+        const matrix = document.getElementById('matrix');
+
+        function update() {
+            const text = input.value;
+            const hash = SHA256.hash(text);
+            hashDisplay.textContent = hash;
+            renderMatrix(hash);
+        }
+
+        function renderMatrix(hashHex) {
+            matrix.innerHTML = '';
+            for (let i = 0; i < hashHex.length; i += 2) {
+                const byte = parseInt(hashHex.substr(i, 2), 16);
+                const bit = document.createElement('div');
+                bit.className = 'bit' + (byte > 128 ? ' active' : '');
+                bit.textContent = byte.toString(16).toUpperCase().padStart(2, '0');
+                matrix.appendChild(bit);
+            }
+        }
+
+        input.addEventListener('input', update);
+        update(); 
+    </script>
+</body>
+</html>
