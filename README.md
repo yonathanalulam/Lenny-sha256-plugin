@@ -1,7 +1,7 @@
 # Lenny SHA-256 Plugin
 
 A lightweight, zero-dependency implementation of the SHA-256 hashing algorithm. 
-Created for a Computer Security assignment.
+
 
 ## Installation
 
