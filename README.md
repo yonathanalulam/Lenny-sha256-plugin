@@ -7,8 +7,6 @@ Created for a Computer Security assignment.
 
 ```bash
 npm install lenny-sha256-demo-plugin
-
-## Usage
 import { SHA256 } from 'lenny-sha256-demo-plugin';
 
 const hash = SHA256.hash("Hello World");
